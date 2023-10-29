@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var data = NewsAPI()
+    
     var body: some View {
-        ZStack {
-            Color.blue
-                .ignoresSafeArea()
-            
-            Text("Content View")
-                .foregroundColor(.white)
-                .font(.system(size: 18))
+        NavigationView {
+            VStack {
+                NewsView()
+            }
+            .navigationTitle("B B C")
+            .environmentObject(data)
+            .onAppear {
+                data.getData()
+            }
         }
     }
 }
